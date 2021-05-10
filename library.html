@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Audio App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color:#4DB6AC;">
+<nav class="navbar navbar-light" style="background-color:#FF0033;">
+    <a href="#" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Audio App</a>
+    <!--<a class="navbar-link btn-lg" href="{% url 'index' %}" style="background-color:#FFCC33;color:#000000;">DataFlair</a>-->
+<a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Admin</a>
+<a href="{% url 'upload-song' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Upload Audio</a>
+</nav>
+<br>
+{% block content %}
+<h1>Audio Play List</h1>
+<hr/>
+<table border="1", class="container">
+  <tr>
+    <th>Audio Id</th>
+    <th>Audio title</th>
+    <th>Audio Type</th>
+    <th>Audio File</th>
+    <th>seconds</th>
+  </tr>
+  {% for song in shelf %}
+  <tr>
+    <td>{{song.id}}</td>
+    <td>{{song.title}}</td>
+    <td>{{song.audio_choice}}</td>
+    <td>{{song.songfile}}</td>
+    <td>{{song.seconds}}</td>
+    <td><a href="update/{{song.id}}" class="btn btn-warning" id = '{{song.id}}'>Edit</a></td>
+    <td><a href="delete/{{song.id}}" class="btn btn-danger" id = '{{song.id}}'>Delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
+</body>
+</html>
